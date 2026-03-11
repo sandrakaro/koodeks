@@ -1,4 +1,4 @@
-public class TestKoodid {
+public class TestKood {
     static void main(String[] args) {
         Kood bin1 = new Kood("0011", 2); // 3
         Kood bin2 = new Kood("010101",2); // 21
@@ -13,10 +13,11 @@ public class TestKoodid {
         Kood hex1 = new Kood("2C9B",16); // 11419
         Kood hex2 = new Kood("1B7E",16); // 7038
         Kood hex3 = new Kood("1AB",16); // 427
+        Kood hex4 = new Kood("0",16); // 0
 
         Kood[] kahendkoodideMassiiv = {bin1,bin2,bin3,bin4};
         Kood[] kaheksandkoodideMassiiv = {oct1,oct2,oct3,oct4};
-        Kood[] heksakoodideMassiiv = {hex1,hex2,hex3};
+        Kood[] heksakoodideMassiiv = {hex1,hex2,hex3,hex4};
 
         for (Kood kood : heksakoodideMassiiv) {
             System.out.println(kood.teisendaKümnendkoodi());

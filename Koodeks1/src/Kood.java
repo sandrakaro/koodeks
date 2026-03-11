@@ -33,12 +33,13 @@ public class Kood {
     public int teisendaKümnendkoodi() {
         // peaklassis on kood ja tüüp vaja enne klassi isendiks tegemist ja
         // meetodite kasutamist trimmida ja õigeks tüübiks ja kujule teisendada
+        // input validation maini vaja lisada
 
         int arvKümnendkoodis = 0;
 
         // Teisendamine ASCII-koodist kümnendkoodi
         if (tüüp == 1) {
-            // kood
+            System.out.println("Seda funktsionaalsust pole veel lisatud");
         }
 
         // Teisendamine kahendkoodist kümnendkoodi
@@ -69,7 +70,7 @@ public class Kood {
 
             // !!!!!!! SEE PEAB MUJAL OLEMA, tegelen mingi hetk
             // muidu läheb iga kord for-tsüklisse kui heksakood on
-            HashMap<Character,Integer> tähtedeVasted= new HashMap<Character,Integer>();
+            HashMap<Character,Integer> tähtedeVasted = new HashMap<Character,Integer>();
             char[] tähed = {'A','B','C','D','E','F'};
             int vaste = 10;
             for (int i = 0; i < tähed.length; i++) {
@@ -98,7 +99,7 @@ public class Kood {
             }
         }
 
-        // Probleemide püüdmiseks debugimisel
+        // Probleemide püüdmiseks debugimisel, muidu peaks olema input validation mainis
         else {
             System.out.println("Sellist kodeeringut ei ole");
         }
