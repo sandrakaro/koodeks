@@ -1,4 +1,4 @@
-public class KasutajaTest {
+public class TestKasutaja {
     static void main(String[] args) {
         Kasutaja test = new Kasutaja("Nimi", "parool");
         String testRasi = test.looRasi("parool");
