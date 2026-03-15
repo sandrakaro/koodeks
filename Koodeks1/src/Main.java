@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Koodeks {
+public class Main {
     /* Täisarvulised tähised:
     1 - ASCII
     2 - binaarkood
@@ -27,9 +27,12 @@ public class Koodeks {
                     "    8 – kaheksandkood\n" +
                     "    10 – kümnendkood\n" +
                     "    16 – kuueteistkümnendkood");
-            int kodeering = Integer.valueOf(sc.nextLine());
+            int algneKodeering = Integer.valueOf(sc.nextLine());
 
-            Kood kood = new Kood(arv,kodeering);
+            System.out.println("\nSisesta tulemuse soovitud kodeering:");
+            int tulemuseKodeering = Integer.valueOf(sc.nextLine());
+
+            Kood kood = new Kood(arv,algneKodeering);
             // praegu teeb kümnendkoodiks, sest muid funktsioone veel pole
             System.out.println("\nSee arv kümnendkoodis:\n" + kood.teisendaKümnendkoodi());
         }

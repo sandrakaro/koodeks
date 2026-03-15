@@ -22,5 +22,7 @@ public class TestKood {
         for (Kood kood : heksakoodideMassiiv) {
             System.out.println(kood.teisendaKümnendkoodi());
         }
+        Kood test1 = new Kood(String.valueOf(oct1.teisendaKümnendkoodi()),10);
+        System.out.println(test1.teisendaKümnendkoodist(16));
     }
 }

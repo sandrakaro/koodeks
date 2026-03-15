@@ -18,6 +18,21 @@ public class Kood {
     public String kood;
     public int tüüp;
 
+    private static final String tähed = "ABCDEF"; // Tähed heksakoodi f-nides kasutamiseks
+    private static final HashMap<Character,Integer> tähtedeVasted = new HashMap<Character,Integer>();
+
+    // Täidame hashmapi heksakoodi tähe-numbri vastetega
+    static {
+    char[] tähed = {'A','B','C','D','E','F','a','b','c','d','e','f'};
+    int vaste = 10;
+    for (int i = 0; i < tähed.length; i++) {
+        tähtedeVasted.put(tähed[i],vaste);
+        vaste++;
+        if (tähed[i] == 'F')
+            vaste = 10;
+    }
+    }
+
     public Kood(String kood, int tüüp) {
         this.kood = kood;
         this.tüüp = tüüp;
@@ -26,8 +41,6 @@ public class Kood {
     /**
      * Meetod teisendab etteantud koodi kümnendkoodi.
      * Teisendatava kodeering sisaldub klassi isendis ja on kasutaja ette antud.
-     * @param kood Antud kood, mida teisendada, sõnena
-     * @param tüüp Antud koodi tüüp täisarvulise tähisena. Valikud on eespool kommenteeritud
      * @return Teisendamisel saadud kümnendkoodi arv
      */
     public int teisendaKümnendkoodi() {
@@ -38,29 +51,20 @@ public class Kood {
         int arvKümnendkoodis = 0;
 
         // Teisendamine ASCII-koodist kümnendkoodi
-        if (tüüp == 1) {
+        // kinda arvan et seda pole vaja tegelt
+        /*if (tüüp == 1) {
             System.out.println("Seda funktsionaalsust pole veel lisatud");
-        }
+        }*/
 
         // Teisendamine kahendkoodist kümnendkoodi
-        else if (tüüp == 2) {
-            int kaheAste = 0;
-
-            for (int i = kood.length()-1; i >=0; i--) {
-                int bitt = Integer.parseInt(String.valueOf(kood.charAt(i)));
-                arvKümnendkoodis += bitt * Math.pow(2,kaheAste);
-                kaheAste++;
-            }
-        }
-
         // Teisendamine kaheksandkoodist kümnendkoodi
-        else if (tüüp == 8) {
-            int kaheksaAste = 0;
+        if (tüüp == 2 || tüüp == 8) {
+            int aste = 0;
 
             for (int i = kood.length()-1; i >=0; i--) {
                 int bitt = Integer.parseInt(String.valueOf(kood.charAt(i)));
-                arvKümnendkoodis += bitt * Math.pow(8,kaheksaAste);
-                kaheksaAste++;
+                arvKümnendkoodis += bitt * Math.pow(tüüp,aste);
+                aste++;
             }
         }
 
@@ -68,26 +72,9 @@ public class Kood {
         else if (tüüp == 16) {
             int kuueteistkümneAste = 0;
 
-            // !!!!!!! SEE PEAB MUJAL OLEMA, tegelen mingi hetk
-            // muidu läheb iga kord for-tsüklisse kui heksakood on
-            HashMap<Character,Integer> tähtedeVasted = new HashMap<Character,Integer>();
-            char[] tähed = {'A','B','C','D','E','F'};
-            int vaste = 10;
-            for (int i = 0; i < tähed.length; i++) {
-                tähtedeVasted.put(tähed[i],vaste);
-                vaste++;
-            }
-
             for (int i = kood.length()-1; i >=0; i--) {
-                /*
-                A = 10
-                B = 11
-                C = 12
-                D = 13
-                E = 14
-                F = 15
-                 */
-                // See on laisk lahendus praegu, vaatab kas muudba paremaks
+                // A = 10, ..., F = 15
+                // See on laisk lahendus praegu, vaatab kas muudab paremaks
                 int bitt = 0;
                 try {
                     bitt = Integer.parseInt(String.valueOf(kood.charAt(i)));
@@ -105,5 +92,35 @@ public class Kood {
         }
 
         return arvKümnendkoodis;
+    }
+
+    /**
+     * Meetod teisendab antud kümnendkoodi kasutaja soovitud kodeeringusse.
+     * @param tulemuseTüüp Soovitud kodeering, mis antakse kasutaja sisendist funktsioonile ette
+     * @return Teisendamisel saadud arv vastavas kodeeringus
+     */
+    public String teisendaKümnendkoodist(int tulemuseTüüp) {
+        // tulemuseTüübiks on samad valikud, mis koodi algseks tüübiks
+        StringBuilder saadudKood = new StringBuilder();
+        int koodInt = Integer.parseInt(kood);
+
+        if (tulemuseTüüp == 2 || tulemuseTüüp == 8) {
+            for (; koodInt > 0; koodInt /= tulemuseTüüp) {
+                saadudKood.append(koodInt % tulemuseTüüp);
+            }
+        }
+
+        else if (tulemuseTüüp == 16) {
+            for (; koodInt > 0; koodInt /= tulemuseTüüp) {
+                int jääk = koodInt % tulemuseTüüp;
+                if (jääk < 10) {
+                    saadudKood.append(jääk);
+                }
+                else {
+                    saadudKood.append(tähed.charAt(jääk-10));
+                }
+            }
+        }
+        return saadudKood.reverse().toString();
     }
 }
