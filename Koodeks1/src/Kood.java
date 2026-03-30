@@ -37,13 +37,27 @@ public class Kood {
         this.tüüp = tüüp;
     }
 
+    // getterid ja setterid
+    public String getKood() {
+        return kood;
+    }
+    public void setKood(String kood) {
+        this.kood = kood;
+    }
+
+    public int getTüüp() {
+        return tüüp;
+    }
+    public void setTüüp(int tüüp) {
+        this.tüüp = tüüp;
+    }
+
     /**
      * Meetod teisendab etteantud koodi kümnendkoodi.
      * Teisendatava kodeering sisaldub klassi isendis ja on kasutaja ette antud.
      * @return Teisendamisel saadud kümnendkoodi arv
      * @throws Exception "Ebasobiv väärtus"
      */
-
     public String teisendaKümnendkoodi() throws Exception {
         // peaklassis on kood ja tüüp vaja enne klassi isendiks tegemist ja
         // meetodite kasutamist trimmida ja õigeks tüübiks ja kujule teisendada

@@ -46,14 +46,12 @@ public class Main {
                 }
             }
         }
-        //sc.close();
         System.out.println("\nTere tulemast, " + sisseLoogitud.getKasutajaNimi());
         System.out.println("Viimane teisendus: " + sisseLoogitud.getViimaneTeisendus());
 
 
 
         // Teisendatava arvu küsimine ja vastuse väljastamine
-        //Scanner sc = new Scanner(System.in);
         System.out.println("Lõpetamiseks sisesta q.");
         while (true) {
             System.out.println("\nSisesta arv, mida soovid teisendada:");
@@ -82,7 +80,7 @@ public class Main {
 
                 // viimatise teisenduse salvestamine
                 String tulemus = kood.teisenda(tulemuseKodeering);
-                String viimane = arv + " (algne kodeering: " + algneKodeering + ") -> " + tulemus;
+                String viimane = kood.getKood() + " (algne kodeering: " + kood.getTüüp() + ") -> " + tulemus;
                 sisseLoogitud.lisaTeisendus(viimane);
                 sisseLoogitud.salvestaFaili();
             }
