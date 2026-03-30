@@ -127,6 +127,7 @@ public class Kood {
             throw new Exception ("Ebasobiv väärtus");
         }
 
+        if (saadudKood.isEmpty()) return "0";
         return saadudKood.reverse().toString();
     }
 }

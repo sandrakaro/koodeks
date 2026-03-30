@@ -21,10 +21,10 @@ public class TestKood {
 
         int[] teisendaMilleks = {2,8,10,16};
 
-        for (Kood kood : heksakoodideMassiiv) {
-            System.out.println(kood.teisendaKümnendkoodi());
+        for (Kood kood : kaheksandkoodideMassiiv) {
+            System.out.println(kood.teisenda(16));
         }
-        Kood test1 = new Kood(String.valueOf(oct1.teisendaKümnendkoodi()),10);
-        System.out.println(test1.teisenda(16));
+        //Kood test1 = new Kood(String.valueOf(oct1.teisendaKümnendkoodi()),10);
+        //System.out.println(test1.teisenda(16));
     }
 }
