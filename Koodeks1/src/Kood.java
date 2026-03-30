@@ -8,7 +8,6 @@ public class Kood {
     // see teeks testimise ja koodi muutmise lihtsamaks
 
     /* Täisarvulised tähised:
-    1 - ASCII
     2 - binaarkood
     8 - kaheksandkood
     10 - kümnendkood
@@ -23,12 +22,12 @@ public class Kood {
 
     // Täidame hashmapi heksakoodi tähe-numbri vastetega
     static {
-    char[] tähed = {'A','B','C','D','E','F','a','b','c','d','e','f'};
+    char[] tähedChar = {'A','B','C','D','E','F','a','b','c','d','e','f'};
     int vaste = 10;
-    for (int i = 0; i < tähed.length; i++) {
-        tähtedeVasted.put(tähed[i],vaste);
+    for (int i = 0; i < tähedChar.length; i++) {
+        tähtedeVasted.put(tähedChar[i],vaste);
         vaste++;
-        if (tähed[i] == 'F')
+        if (tähedChar[i] == 'F')
             vaste = 10;
     }
     }
@@ -43,22 +42,18 @@ public class Kood {
      * Teisendatava kodeering sisaldub klassi isendis ja on kasutaja ette antud.
      * @return Teisendamisel saadud kümnendkoodi arv
      */
-    public int teisendaKümnendkoodi() {
+
+    public String teisendaKümnendkoodi() {
         // peaklassis on kood ja tüüp vaja enne klassi isendiks tegemist ja
         // meetodite kasutamist trimmida ja õigeks tüübiks ja kujule teisendada
-        // input validation maini vaja lisada
 
         int arvKümnendkoodis = 0;
 
-        // Teisendamine ASCII-koodist kümnendkoodi
-        // kinda arvan et seda pole vaja tegelt
-        /*if (tüüp == 1) {
-            System.out.println("Seda funktsionaalsust pole veel lisatud");
-        }*/
+        if (tüüp==10) arvKümnendkoodis = Integer.parseInt(kood);
 
         // Teisendamine kahendkoodist kümnendkoodi
         // Teisendamine kaheksandkoodist kümnendkoodi
-        if (tüüp == 2 || tüüp == 8) {
+        else if (tüüp == 2 || tüüp == 8) {
             int aste = 0;
 
             for (int i = kood.length()-1; i >=0; i--) {
@@ -74,24 +69,19 @@ public class Kood {
 
             for (int i = kood.length()-1; i >=0; i--) {
                 // A = 10, ..., F = 15
-                // See on laisk lahendus praegu, vaatab kas muudab paremaks
                 int bitt = 0;
-                try {
-                    bitt = Integer.parseInt(String.valueOf(kood.charAt(i)));
-                } catch (NumberFormatException e) {
+                if (tähtedeVasted.containsKey(kood.charAt(i))) {
                     bitt = tähtedeVasted.get(kood.charAt(i));
+                }
+                else {
+                    bitt = Integer.parseInt(String.valueOf(kood.charAt(i)));
                 }
                 arvKümnendkoodis += bitt * Math.pow(16,kuueteistkümneAste);
                 kuueteistkümneAste++;
             }
         }
 
-        // Probleemide püüdmiseks debugimisel, muidu peaks olema input validation mainis
-        else {
-            System.out.println("Sellist kodeeringut ei ole");
-        }
-
-        return arvKümnendkoodis;
+        return String.valueOf(arvKümnendkoodis);
     }
 
     /**
@@ -99,10 +89,11 @@ public class Kood {
      * @param tulemuseTüüp Soovitud kodeering, mis antakse kasutaja sisendist funktsioonile ette
      * @return Teisendamisel saadud arv vastavas kodeeringus
      */
-    public String teisendaKümnendkoodist(int tulemuseTüüp) {
+    public String teisenda(int tulemuseTüüp) {
+        Kood kümnendkood = new Kood(teisendaKümnendkoodi(), 10); // kui on juba kümenndkoodis siis teisendaKümnendkoodi tagastab kohe sama arvu
         // tulemuseTüübiks on samad valikud, mis koodi algseks tüübiks
         StringBuilder saadudKood = new StringBuilder();
-        int koodInt = Integer.parseInt(kood);
+        int koodInt = Integer.parseInt(kümnendkood.kood);
 
         if (tulemuseTüüp == 2 || tulemuseTüüp == 8) {
             for (; koodInt > 0; koodInt /= tulemuseTüüp) {

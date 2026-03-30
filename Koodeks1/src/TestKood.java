@@ -1,5 +1,5 @@
 public class TestKood {
-    static void main(String[] args) {
+    static void main(String[] args) throws Exception {
         Kood bin1 = new Kood("0011", 2); // 3
         Kood bin2 = new Kood("010101",2); // 21
         Kood bin3 = new Kood("111111",2); // 63
@@ -19,10 +19,12 @@ public class TestKood {
         Kood[] kaheksandkoodideMassiiv = {oct1,oct2,oct3,oct4};
         Kood[] heksakoodideMassiiv = {hex1,hex2,hex3,hex4};
 
+        int[] teisendaMilleks = {2,8,10,16};
+
         for (Kood kood : heksakoodideMassiiv) {
             System.out.println(kood.teisendaKümnendkoodi());
         }
         Kood test1 = new Kood(String.valueOf(oct1.teisendaKümnendkoodi()),10);
-        System.out.println(test1.teisendaKümnendkoodist(16));
+        System.out.println(test1.teisenda(16));
     }
 }
