@@ -46,20 +46,20 @@ public class Main {
                 }
             }
         }
-        sc.close();
+        //sc.close();
         System.out.println("\nTere tulemast, " + sisseLoogitud.getKasutajaNimi());
         System.out.println("Viimane teisendus: " + sisseLoogitud.getViimaneTeisendus());
 
 
 
         // Teisendatava arvu küsimine ja vastuse väljastamine
-        Scanner scFail = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
         System.out.println("Lõpetamiseks sisesta q.");
         while (true) {
             System.out.println("\nSisesta arv, mida soovid teisendada:");
-            String arv = scFail.nextLine();
+            String arv = sc.nextLine();
             if (arv.equals("q")) {
-                scFail.close();
+                sc.close();
                 break;
             }
             System.out.println("\nSisesta arvu algne kodeering.");
@@ -70,10 +70,11 @@ public class Main {
                     "    16 – kuueteistkümnendkood");
 
             try {
-                int algneKodeering = Integer.valueOf(scFail.nextLine());
+                int algneKodeering = Integer.valueOf(sc.nextLine());
 
                 System.out.println("\nSisesta tulemuse soovitud kodeering:");
-                int tulemuseKodeering = Integer.valueOf(scFail.nextLine());
+                int tulemuseKodeering = Integer.valueOf(sc.nextLine());
+
 
                 Kood kood = new Kood(arv, algneKodeering);
                 System.out.println("\nSee arv " + kodeeringudSõnaga.get(tulemuseKodeering) + ":\n" + kood.teisenda(tulemuseKodeering));
@@ -84,12 +85,10 @@ public class Main {
                 String viimane = arv + " (algne kodeering: " + algneKodeering + ") -> " + tulemus;
                 sisseLoogitud.lisaTeisendus(viimane);
                 sisseLoogitud.salvestaFaili();
-
-
             }
             catch (Exception e) {
-                System.out.println("Sisestasid mingi ebasobiva väärtuse. Programm lõpetab töö.");
-                scFail.close();
+                System.out.println("Sisestasid ebasobiva väärtuse või tekkis muu error. Programm lõpetab töö.");
+                sc.close();
                 break;
             }
         }

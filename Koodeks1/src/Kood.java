@@ -41,9 +41,10 @@ public class Kood {
      * Meetod teisendab etteantud koodi kümnendkoodi.
      * Teisendatava kodeering sisaldub klassi isendis ja on kasutaja ette antud.
      * @return Teisendamisel saadud kümnendkoodi arv
+     * @throws Exception "Ebasobiv väärtus"
      */
 
-    public String teisendaKümnendkoodi() {
+    public String teisendaKümnendkoodi() throws Exception {
         // peaklassis on kood ja tüüp vaja enne klassi isendiks tegemist ja
         // meetodite kasutamist trimmida ja õigeks tüübiks ja kujule teisendada
 
@@ -81,6 +82,10 @@ public class Kood {
             }
         }
 
+        else {
+            throw new Exception ("Ebasobiv väärtus");
+        }
+
         return String.valueOf(arvKümnendkoodis);
     }
 
@@ -88,14 +93,19 @@ public class Kood {
      * Meetod teisendab antud kümnendkoodi kasutaja soovitud kodeeringusse.
      * @param tulemuseTüüp Soovitud kodeering, mis antakse kasutaja sisendist funktsioonile ette
      * @return Teisendamisel saadud arv vastavas kodeeringus
+     * @throws Exception "Ebasobiv väärtus"
      */
-    public String teisenda(int tulemuseTüüp) {
+    public String teisenda(int tulemuseTüüp) throws Exception {
         Kood kümnendkood = new Kood(teisendaKümnendkoodi(), 10); // kui on juba kümenndkoodis siis teisendaKümnendkoodi tagastab kohe sama arvu
         // tulemuseTüübiks on samad valikud, mis koodi algseks tüübiks
+
         StringBuilder saadudKood = new StringBuilder();
         int koodInt = Integer.parseInt(kümnendkood.kood);
 
-        if (tulemuseTüüp == 2 || tulemuseTüüp == 8) {
+        if (tulemuseTüüp == 10)
+            return kümnendkood.kood;
+
+        else if (tulemuseTüüp == 2 || tulemuseTüüp == 8) {
             for (; koodInt > 0; koodInt /= tulemuseTüüp) {
                 saadudKood.append(koodInt % tulemuseTüüp);
             }
@@ -112,6 +122,11 @@ public class Kood {
                 }
             }
         }
+
+        else {
+            throw new Exception ("Ebasobiv väärtus");
+        }
+
         return saadudKood.reverse().toString();
     }
 }
