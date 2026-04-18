@@ -1,3 +1,4 @@
+package com.example.koodeks2;
 import java.util.HashMap;
 
 public class Kood {

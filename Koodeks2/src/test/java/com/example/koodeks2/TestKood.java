@@ -1,3 +1,5 @@
+package com.example.koodeks2;
+
 public class TestKood {
     static void main(String[] args) throws Exception {
         Kood bin1 = new Kood("0011", 2); // 3

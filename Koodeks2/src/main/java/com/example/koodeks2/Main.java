@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package com.example.koodeks2;
 import java.util.HashMap;
 import java.util.Scanner;
 

@@ -1,3 +1,5 @@
+package com.example.koodeks2;
+
 public class TestKasutaja {
     static void main(String[] args) {
         Kasutaja test = new Kasutaja("Nimi", "parool");
