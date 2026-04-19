@@ -4,6 +4,7 @@ plugins {
     id("org.javamodularity.moduleplugin") version "1.8.15"
     id("org.openjfx.javafxplugin") version "0.1.0"
     id("org.beryx.jlink") version "2.25.0"
+
 }
 
 group = "com.example"
@@ -33,7 +34,13 @@ application {
     mainModule.set("com.example.koodeks2")
     mainClass.set("com.example.koodeks2.HelloApplication")
     applicationDefaultJvmArgs = listOf("--enable-native-access=javafx.graphics")
+    applicationDefaultJvmArgs = listOf(
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        )
 }
+
 
 javafx {
     version = "21.0.6"

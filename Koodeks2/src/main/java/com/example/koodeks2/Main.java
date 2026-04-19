@@ -1,4 +1,6 @@
 package com.example.koodeks2;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -20,7 +22,10 @@ public class Main {
         }
     }
 
-    static void main(String[] args) {
+    static void main(String[] args) throws UnsupportedEncodingException {
+
+        // Paneme väljundi kodeeringuks UTF-8
+        System.setOut(new PrintStream(System.out, true, "UTF-8"));
 
         //sisseloogimine või uue kasutaja loomine
         Kasutaja sisseLoogitud = null;
