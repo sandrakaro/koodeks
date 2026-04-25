@@ -78,11 +78,9 @@ public class Kasutaja {
      * Salvestame kasutaja andmed faili, lisades uue rea faili lõppu.
      * Andmed salvestatakse formaadis nimi:parooliräsi:viimaneTeisendus
      */
-    public void salvestaFaili() {
+    public void salvestaFaili() throws IOException {
         try (PrintWriter pw = new PrintWriter(new FileWriter("kasutajad.txt", true))) {
             pw.println(kasutajaNimi + ":" + parooliRasi + ":" + viimaneTeisendus);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -93,7 +91,7 @@ public class Kasutaja {
      * @param otsitavParool Parool, mille räsi kontrollitakse
      * @return Kasutaja objekt, kui andmed on õiged.
      */
-    public static Kasutaja loeFailist(String otsitavNimi, String otsitavParool) {
+    public static Kasutaja loeFailist(String otsitavNimi, String otsitavParool) throws IOException {
         File fail = new File("kasutajad.txt");
         String rasiKontroll = looRasi(otsitavParool);
         Kasutaja leitudKasutaja = null;
@@ -114,7 +112,7 @@ public class Kasutaja {
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new IOException(e);
         }
         return leitudKasutaja;
     }
