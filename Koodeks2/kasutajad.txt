@@ -1,0 +1,2 @@
+kasutaja:365bdc6ae8c657d005aefebe0e904766c1d7222251738a317671cd0dac96d50d:Puudub
+kasutaja:365bdc6ae8c657d005aefebe0e904766c1d7222251738a317671cd0dac96d50d:2 (algne kodeering: 2) -> 10
