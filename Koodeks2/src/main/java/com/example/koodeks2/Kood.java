@@ -1,5 +1,6 @@
 package com.example.koodeks2;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Kood {
     // võibolla vaja lisada getter ja setter?
@@ -15,8 +16,8 @@ public class Kood {
     16 - kuueteistkümnendkood
      */
 
-    public String kood;
-    public int tüüp;
+    private String kood;
+    private int tüüp;
 
     private static final String tähed = "ABCDEF"; // Tähed heksakoodi f-nides kasutamiseks
     private static final HashMap<Character,Integer> tähtedeVasted = new HashMap<Character,Integer>();
@@ -33,9 +34,11 @@ public class Kood {
     }
     }
 
-    public Kood(String kood, int tüüp) {
+    public Kood(String kood, int tüüp) throws EbasobivaKodeeringuErind {
         this.kood = kood;
-        this.tüüp = tüüp;
+        if (tüüp == 2 || tüüp == 8 || tüüp == 10 || tüüp == 16)
+            this.tüüp = tüüp;
+        else throw new EbasobivaKodeeringuErind();
     }
 
     // getterid ja setterid
@@ -59,7 +62,7 @@ public class Kood {
      * @return Teisendamisel saadud kümnendkoodi arv
      * @throws Exception "Ebasobiv väärtus"
      */
-    public String teisendaKümnendkoodi() throws Exception {
+    public String teisendaKümnendkoodi() throws EbasobivaKodeeringuErind {
         // peaklassis on kood ja tüüp vaja enne klassi isendiks tegemist ja
         // meetodite kasutamist trimmida ja õigeks tüübiks ja kujule teisendada
 
@@ -98,7 +101,7 @@ public class Kood {
         }
 
         else {
-            throw new Exception ("Ebasobiv väärtus");
+            throw new EbasobivaKodeeringuErind();
         }
 
         return String.valueOf(arvKümnendkoodis);
@@ -110,7 +113,7 @@ public class Kood {
      * @return Teisendamisel saadud arv vastavas kodeeringus
      * @throws Exception "Ebasobiv väärtus"
      */
-    public String teisenda(int tulemuseTüüp) throws Exception {
+    public String teisenda(int tulemuseTüüp) throws EbasobivaKodeeringuErind {
         Kood kümnendkood = new Kood(teisendaKümnendkoodi(), 10); // kui on juba kümenndkoodis siis teisendaKümnendkoodi tagastab kohe sama arvu
         // tulemuseTüübiks on samad valikud, mis koodi algseks tüübiks
 
@@ -139,7 +142,7 @@ public class Kood {
         }
 
         else {
-            throw new Exception ("Ebasobiv väärtus");
+            throw new EbasobivaKodeeringuErind();
         }
 
         if (saadudKood.isEmpty()) return "0";
