@@ -14,6 +14,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class KasutajaVaade {
     private Stage stseen;
 
@@ -67,7 +69,12 @@ public class KasutajaVaade {
         Stiil.lisaTaust(juur);
 
         sisse.setOnAction(e -> {
-            Kasutaja kasutaja = Kasutaja.loeFailist(kasutajaNimi.getText(), parool.getText());
+            Kasutaja kasutaja = null;
+            try {
+                kasutaja = Kasutaja.loeFailist(kasutajaNimi.getText(), parool.getText());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
 
             if (kasutaja != null) {
                 new KoodVaade(stseen).show();
