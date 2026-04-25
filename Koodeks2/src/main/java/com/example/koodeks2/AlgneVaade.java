@@ -58,6 +58,5 @@ public class AlgneVaade {
         stseen.setTitle("KOODEKS");
         stseen.setMaximized(true);
         stseen.show();
-
     }
 }
