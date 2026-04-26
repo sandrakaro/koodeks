@@ -17,7 +17,7 @@ public class Main {
     public static Map<Integer, String> kodeeringudSõnaga = Map.of(2, "kahendkoodis", 8, "kaheksandkoodis",
             10, "kümnendkoodis", 16, "kuueteistkümnendkoodis");
 
-    static void main(String[] args) throws EbasobivaKodeeringuErind, IOException {
+    static void main(String[] args) throws IOException {
 
         // Paneme väljundi kodeeringuks UTF-8 (JFX ei anna muidu täpitähti, ajutine lahendus enne GUI-sse üleviimist)
         System.setOut(new PrintStream(System.out, true, "UTF-8"));
@@ -52,6 +52,8 @@ public class Main {
         // Teisendatava arvu küsimine ja vastuse väljastamine
         System.out.println("Lõpetamiseks sisesta q.");
         while (true) {
+            // siin on vaja kõik osad try-catch plokkidesse viia et ei küsitaks uuesti seda, mis oli õige
+
             System.out.println("\nSisesta arv, mida soovid teisendada:");
             String arv = sc.nextLine();
             if (arv.equals("q")) {
@@ -59,6 +61,7 @@ public class Main {
                 sc.close();
                 break;
             }
+
             System.out.println("\nSisesta arvu algne kodeering.");
             System.out.println(
                     "    2 – binaarkood\n" +
@@ -85,7 +88,7 @@ public class Main {
                 sisseLoogitud.salvestaFaili();
 
             } catch (NumberFormatException | EbasobivaKodeeringuErind e) {
-                System.out.println("Ebasobiv väärtus, sisesta arvu algne kodeering uuesti.");
+                System.out.println("Ebasobiv väärtus, sisesta väärtused uuesti.");
             } catch (IOException e) {
                 throw new IOException(e);
             }

@@ -23,10 +23,12 @@ public class TestKood {
 
         int[] teisendaMilleks = {2,8,10,16};
 
-        for (Kood kood : kaheksandkoodideMassiiv) {
+        /*for (Kood kood : kaheksandkoodideMassiiv) {
             System.out.println(kood.teisenda(16));
-        }
+        }*/
         //Kood test1 = new Kood(String.valueOf(oct1.teisendaKümnendkoodi()),10);
         //System.out.println(test1.teisenda(16));
+        Kood test2 = new Kood("1AB.123",16);
+        System.out.println(test2.teisendaKümnendkoodi());
     }
 }
