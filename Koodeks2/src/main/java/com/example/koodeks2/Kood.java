@@ -56,6 +56,15 @@ public class Kood {
         this.tüüp = tüüp;
     }
 
+    public boolean onKomakohtadega() {
+        for (int i = 0; i < kood.length(); i++) {
+            String märk = String.valueOf(kood.charAt(i));
+            if (märk.equals("."))
+                return true;
+        }
+        return false;
+    }
+
     /**
      * Meetod teisendab etteantud koodi kümnendkoodi.
      * Teisendatava kodeering sisaldub klassi isendis ja on kasutaja ette antud.
@@ -66,20 +75,39 @@ public class Kood {
         // peaklassis on kood ja tüüp vaja enne klassi isendiks tegemist ja
         // meetodite kasutamist trimmida ja õigeks tüübiks ja kujule teisendada
 
-        int arvKümnendkoodis = 0;
+        double arvKümnendkoodis = 0;
 
-        if (tüüp==10) arvKümnendkoodis = Integer.parseInt(kood);
+        if (tüüp==10) arvKümnendkoodis = Double.parseDouble(kood);
 
         // Teisendamine kahendkoodist kümnendkoodi
         // Teisendamine kaheksandkoodist kümnendkoodi
         else if (tüüp == 2 || tüüp == 8) {
-            int aste = 0;
 
-            for (int i = kood.length()-1; i >=0; i--) {
-                int bitt = Integer.parseInt(String.valueOf(kood.charAt(i)));
-                arvKümnendkoodis += bitt * Math.pow(tüüp,aste);
-                aste++;
+            String täisosa = kood; // kui on täisarv, siis täisosa on arv ise, kui mitte,
+            // siis loome eraldi muutujad täisosaks ja komakohtadeks
+
+            if (this.onKomakohtadega()) {
+                String[] arvuOsad = kood.split(".");
+                täisosa = arvuOsad[0];
+                String komakohad = arvuOsad[1];
+
+                // Loogika komakohtade arvutamiseks
+                int asteKahanev = -1;
+                for (int i = 0; i < komakohad.length(); i++) {
+                    int bitt = Integer.parseInt(String.valueOf(komakohad.charAt(i)));
+                    arvKümnendkoodis += bitt * Math.pow(tüüp,asteKahanev);
+                    asteKahanev--;
+                }
             }
+
+            // Loogika täisosa arvutamiseks
+            int asteKasvav = 0;
+            for (int i = täisosa.length()-1; i >=0; i--) {
+                int bitt = Integer.parseInt(String.valueOf(täisosa.charAt(i)));
+                arvKümnendkoodis += bitt * Math.pow(tüüp,asteKasvav);
+                asteKasvav++;
+            }
+
         }
 
         // Teisendamine kuueteistkümnendkoodist kümnendkoodi
