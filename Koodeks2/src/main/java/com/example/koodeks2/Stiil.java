@@ -48,7 +48,7 @@ public class Stiil {
     }
 
     public static void nupuTagasiStiil(Button nupp) {
-        nupp.setPrefSize(100, 50);
+        //nupp.setPrefSize(70, 20);
         nupp.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
 
         nupp.setStyle(
