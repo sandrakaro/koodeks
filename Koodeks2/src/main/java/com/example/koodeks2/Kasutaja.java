@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Kasutaja {
     private String kasutajaNimi;
     private String parooliRasi;
+    private String viimaneTeisendus;
 
     public Kasutaja(String kasutajaNimi, String parool) {
         this.kasutajaNimi = kasutajaNimi;
@@ -62,8 +63,6 @@ public class Kasutaja {
             return false;
         }
     }
-
-    public String viimaneTeisendus;
 
     public String getViimaneTeisendus() {
         return viimaneTeisendus;
