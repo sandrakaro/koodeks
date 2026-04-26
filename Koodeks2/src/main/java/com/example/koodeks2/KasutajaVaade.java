@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -15,6 +16,8 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static javafx.scene.input.KeyCode.U;
 
 public class KasutajaVaade {
     private Stage stseen;
@@ -46,8 +49,10 @@ public class KasutajaVaade {
         error.setTextFill(Color.web("#776f8f"));
 
         Button sisse = new Button("Logi sisse");
+        Button tagasi = new Button("\u2190");
 
         Stiil.nuppudeStiil(sisse);
+        Stiil.nupuTagasiStiil(tagasi);
 
         BorderPane juur = new BorderPane();
 
@@ -55,16 +60,21 @@ public class KasutajaVaade {
         topBox.setAlignment(Pos.CENTER);
         topBox.setStyle("-fx-padding: 50;");
 
+        VBox lefttopBox = new VBox(tagasi);
+        lefttopBox.setAlignment(Pos.TOP_LEFT);
+        lefttopBox.setStyle("-fx-padding: 10");
+
+        StackPane topStack = new StackPane();
+        topStack.getChildren().addAll(topBox, lefttopBox);
+
         HBox centerBox = new HBox(100, kasutajaNimi, parool, sisse);
         centerBox.setAlignment(Pos.CENTER);
 
-        VBox bottomBox = new VBox(10, error);
-        bottomBox.setAlignment(Pos.CENTER);
-        bottomBox.setStyle("-fx-padding: 100");
+        VBox mainCenter = new VBox(10, error, centerBox);
+        mainCenter.setAlignment(Pos.CENTER);
 
-        juur.setTop(topBox);
-        juur.setCenter(centerBox);
-        juur.setBottom(bottomBox);
+        juur.setTop(topStack);
+        juur.setCenter(mainCenter);
 
         Stiil.lisaTaust(juur);
 
@@ -81,6 +91,10 @@ public class KasutajaVaade {
             } else {
                 error.setText("Vale kasutajanimi või parool");
             }
+        });
+
+        tagasi.setOnAction(e -> {
+            new AlgneVaade(stseen).show();
         });
 
         stseen.setScene(new Scene(juur, 800, 600));

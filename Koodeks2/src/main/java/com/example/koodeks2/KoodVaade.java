@@ -1,7 +1,9 @@
 package com.example.koodeks2;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -15,11 +17,20 @@ public class KoodVaade {
 
     public void show() {
 
-        Label label = new Label("Siin toimub teisendamine");
+        Label pealkiri = new Label("K O O D E K S");
+        Stiil.pealkirjaStiil(pealkiri);
 
-        VBox root = new VBox(label);
+        BorderPane juur = new BorderPane();
 
-        stseen.setScene(new Scene(root, 800, 600));
+        VBox topBox = new VBox(pealkiri);
+        topBox.setAlignment(Pos.CENTER);
+        topBox.setStyle("-fx-padding: 50;");
+
+        juur.setTop(topBox);
+
+        Stiil.lisaTaust(juur);
+
+        stseen.setScene(new Scene(juur, 800, 600));
         stseen.setTitle("Kood");
         stseen.show();
     }

@@ -14,12 +14,12 @@ public class Stiil {
     }
 
     public static void pealkirjaStiil(Label pealkiri) {
-        pealkiri.setTextFill(Color.web("#776f8f"));
+        pealkiri.setStyle("-fx-text-fill: #776f8f");
         pealkiri.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 150));
     }
 
     public static void kirjelduseStiil(Label kirjeldus) {
-        kirjeldus.setTextFill(Color.web("#504c59"));
+        kirjeldus.setStyle("-fx-text-fill: #504c59");
         kirjeldus.setFont(Font.font("Verdana", FontWeight.EXTRA_LIGHT, 30));
     }
 
@@ -28,7 +28,7 @@ public class Stiil {
         nupp.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
 
         nupp.setStyle(
-                "-fx-background-color: linear-gradient(to bottom right, #b06ab3, #4568dc);" +
+                "-fx-background-color: linear-gradient(to bottom right, #b083b3, #6176bd);" +
                         "-fx-background-radius: 30; " +
                         "-fx-text-fill: white;" +
                         "-fx-cursor: hand;" +
@@ -45,5 +45,25 @@ public class Stiil {
 
         nupp.setOnMouseEntered(e -> nupp.setOpacity(0.9));
         nupp.setOnMouseExited(e -> nupp.setOpacity(1.0));
+    }
+
+    public static void nupuTagasiStiil(Button nupp) {
+        nupp.setPrefSize(100, 50);
+        nupp.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
+
+        nupp.setStyle(
+                "-fx-background-color: transparent;" +
+                        "-fx-text-fill: #7b8bbd;" +
+                        "-fx-cursor: hand;"
+        );
+
+        nupp.setOnMouseEntered(e -> {
+            nupp.setScaleX(1.2);
+            nupp.setScaleY(1.2);
+        });
+        nupp.setOnMouseExited(e -> {
+            nupp.setScaleX(1.0);
+            nupp.setScaleY(1.0);
+        });
     }
 }
