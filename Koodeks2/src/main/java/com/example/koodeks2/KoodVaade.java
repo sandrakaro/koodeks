@@ -25,8 +25,7 @@ public class KoodVaade {
         Label pealkiri = new Label("K O O D E K S");
         Stiil.pealkirjaStiil(pealkiri);
 
-        Label tere = new Label("TERE TULEMAST,  " + kasutajaNimi +
-                " !\n" +
+        Label tere = new Label("TERE TULEMAST,  " + kasutajaNimi + " !\n" +
                 "VIIMANE TEISENDUS:  " + viimaneTeisendus);
         Stiil.koodStiil(tere);
 
