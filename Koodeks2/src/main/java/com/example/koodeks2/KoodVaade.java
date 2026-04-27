@@ -128,7 +128,7 @@ public class KoodVaade {
         stseen.show();
     }
 
-    // sestusväljade paigutuse abimeetodi
+    // sisestusväljade paigutuse abimeetodi
     private HBox looInputRida(String tekst, javafx.scene.Node inputNode) {
         Label l = new Label(tekst);
         Stiil.koodStiil(l);
