@@ -62,8 +62,7 @@ public class Kood {
      * ehk kas selles sisaldub punkt
      * @return True, kui leidub punkt (komakohtade eraldaja), false, kui ei leidu
      */
-    public boolean onKomakohtadega() { // siin on veel vaja välja mõelda, mida teha, kui kasutaja
-        // sisestab punkti asemel koma
+    public boolean onKomakohtadega() {
         return kood.contains(".");
     }
 
