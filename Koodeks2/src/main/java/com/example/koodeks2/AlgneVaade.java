@@ -21,7 +21,7 @@ public class AlgneVaade {
         Label pealkiri = new Label("K O O D E K S");
         Stiil.pealkirjaStiil(pealkiri);
 
-        Label kirjeldus = new Label(" sinu abiline arvusüsteemide teisendamisel");
+        Label kirjeldus = new Label(" SINU ABILINE ARVUSÜSTEEMIDE TEISENDAMISEL");
         Stiil.kirjelduseStiil(kirjeldus);
 
         Button sisseloogimine = new Button("Logi sisse");

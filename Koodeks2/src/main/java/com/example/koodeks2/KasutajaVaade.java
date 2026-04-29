@@ -10,14 +10,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static javafx.scene.input.KeyCode.U;
 
 public class KasutajaVaade {
     private Stage stseen;
@@ -31,7 +28,7 @@ public class KasutajaVaade {
         Label pealkiri = new Label("K O O D E K S");
         Stiil.pealkirjaStiil(pealkiri);
 
-        Label kirjeldus = new Label(" sinu abiline arvusüsteemide teisendamisel");
+        Label kirjeldus = new Label(" SINU ABILINE ARVUSÜSTEEMIDE TEISENDAMISEL");
         Stiil.kirjelduseStiil(kirjeldus);
 
         TextField kasutajaNimi = new TextField();
@@ -45,8 +42,7 @@ public class KasutajaVaade {
         parool.setFont(Font.font("Verdana", FontWeight.NORMAL, 20));
 
         Label error = new Label();
-        error.setFont(Font.font("Verdana", FontWeight.NORMAL, 20));
-        error.setTextFill(Color.web("#776f8f"));
+        Stiil.kirjelduseStiil(error);
 
         Button sisse = new Button("Logi sisse");
         Button tagasi = new Button("\u2190");
@@ -78,6 +74,7 @@ public class KasutajaVaade {
 
         Stiil.lisaTaust(juur);
 
+        // sisseloogimine
         sisse.setOnAction(e -> {
             Kasutaja kasutaja = null;
             try {
@@ -87,12 +84,13 @@ public class KasutajaVaade {
             }
 
             if (kasutaja != null) {
-                new KoodVaade(stseen).show();
+                new KoodVaade(stseen, kasutajaNimi.getText(), kasutaja.getViimaneTeisendus()).show();
             } else {
-                error.setText("Vale kasutajanimi või parool");
+                error.setText("VALE KASUTAJANIMI VÕI PAROOL");
             }
         });
 
+        // tagastab AlgneVaade lehekyljele
         tagasi.setOnAction(e -> {
             new AlgneVaade(stseen).show();
         });

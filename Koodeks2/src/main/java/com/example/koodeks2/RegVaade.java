@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -28,12 +27,13 @@ public class RegVaade {
         Label pealkiri = new Label("K O O D E K S");
         Stiil.pealkirjaStiil(pealkiri);
 
-        Label kirjeldus = new Label(" sinu abiline arvusüsteemide teisendamisel");
+        Label kirjeldus = new Label(" SINU ABILINE ARVUSÜSTEEMIDE TEISENDAMISEL");
         Stiil.kirjelduseStiil(kirjeldus);
 
-        Label tekst = new Label("Sisesta uus kasutajanimi ja parool");
-        tekst.setFont(Font.font("Verdana", FontWeight.NORMAL, 20));
-        tekst.setTextFill(Color.web("#776f8f"));
+        Label tekst = new Label("SISESTA UUS KASUTAJANIMI JA PAROOL");
+        //tekst.setFont(Font.font("Verdana", FontWeight.NORMAL, 20));
+        //tekst.setTextFill(Color.web("#776f8f"));
+        Stiil.kirjelduseStiil(tekst);
 
         TextField kasutajaNimi = new TextField();
         kasutajaNimi.setPromptText("Uus kasutajanimi");
@@ -75,6 +75,7 @@ public class RegVaade {
 
         Stiil.lisaTaust(juur);
 
+        // registreerimine
         reg.setOnAction(e -> {
             Kasutaja uus = null;
             uus = new Kasutaja(kasutajaNimi.getText(), parool.getText());
@@ -89,6 +90,7 @@ public class RegVaade {
             }
         });
 
+        // tagastab AlgneVaade lehekyljele
         tagasi.setOnAction(e -> {
             new AlgneVaade(stseen).show();
         });

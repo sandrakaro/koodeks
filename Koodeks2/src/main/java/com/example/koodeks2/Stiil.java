@@ -19,8 +19,13 @@ public class Stiil {
     }
 
     public static void kirjelduseStiil(Label kirjeldus) {
-        kirjeldus.setStyle("-fx-text-fill: #504c59");
-        kirjeldus.setFont(Font.font("Verdana", FontWeight.EXTRA_LIGHT, 30));
+        kirjeldus.setStyle("-fx-text-fill: #776f8f");
+        kirjeldus.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 18));
+    }
+
+    public static void koodStiil(Label tekst) {
+        tekst.setStyle("-fx-text-fill: #776f8f");
+        tekst.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 24));
     }
 
     public static void nuppudeStiil(Button nupp) {
