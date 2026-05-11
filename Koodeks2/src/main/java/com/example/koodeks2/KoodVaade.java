@@ -8,16 +8,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class KoodVaade {
+import java.io.IOException;
 
+public class KoodVaade {
+    // siin oleks vaja refactor'ida, et kasutajanimi ja viimaneteisendus tuleksid otse kasutajast,
+    // praegu on allpool mingid keerulisemad sõltuvused, mida vaja lahendada
     private Stage stseen;
     private String kasutajaNimi;
     private String viimaneTeisendus;
+    private Kasutaja kasutaja;
 
-    public KoodVaade(Stage stseen, String kasutajaNimi, String viimaneTeisendus) {
+    public KoodVaade(Stage stseen, String kasutajaNimi, String viimaneTeisendus, Kasutaja kasutaja) {
         this.stseen = stseen;
         this.kasutajaNimi = kasutajaNimi;
         this.viimaneTeisendus = viimaneTeisendus;
+        this.kasutaja = kasutaja;
     }
 
     public void show() {
@@ -25,8 +30,8 @@ public class KoodVaade {
         Label pealkiri = new Label("K O O D E K S");
         Stiil.pealkirjaStiil(pealkiri);
 
-        Label tere = new Label("TERE TULEMAST,  " + kasutajaNimi + " !\n" +
-                "VIIMANE TEISENDUS:  " + viimaneTeisendus);
+        Label tere = new Label("TERE TULEMAST,  " + kasutaja.getKasutajaNimi() + " !\n" +
+                "VIIMANE TEISENDUS:  " + kasutaja.getViimaneTeisendus());
         Stiil.koodStiil(tere);
 
         Label kodeering = new Label(" 2  - BINAARKOOD\n" +
@@ -80,8 +85,8 @@ public class KoodVaade {
         instr.setAlignment(Pos.TOP_RIGHT);
         instr.setPadding(new javafx.geometry.Insets(10, 20, 10, 10));
 
-        // tutvustus ja instruktsioon koos yhes reas
-        // spacer - taidab vaba ruumi
+        // tutvustus ja instruktsioon koos ühes reas
+        // spacer - täidab vaba ruumi
         HBox infoRida = new HBox();
         infoRida.setAlignment(Pos.CENTER);
         javafx.scene.layout.Region spacer = new javafx.scene.layout.Region();
@@ -119,8 +124,29 @@ public class KoodVaade {
 
         // teisendamine
         teisendaNupp.setOnAction(e -> {
-            // midagi siin
-            // tulemus.setText();
+            try {
+                Kood sisestatudArv = new Kood(arv.getText(),Integer.parseInt(algneKod.getText()));
+                String teisendatudArv = sisestatudArv.teisenda(Integer.parseInt(soovKod.getText()));
+                tulemus.setText(teisendatudArv);
+
+                // viimatise teisenduse salvestamine
+                String viimane = sisestatudArv.getKood() + " (algne kodeering: " + sisestatudArv.getTüüp() + ") -> " + teisendatudArv;
+                kasutaja.lisaTeisendus(viimane);
+                kasutaja.salvestaFaili();
+
+                // võiks veel olla viimatise tulemuse näitamine reaalajas,
+                // varsti uurin seda
+                /*tere = new Label("TERE TULEMAST,  " + kasutaja.getKasutajaNimi() + " !\n" +
+                        "VIIMANE TEISENDUS:  " + kasutaja.getViimaneTeisendus());*/
+
+            } catch (EbasobivaKodeeringuErind ex) {
+                throw new RuntimeException(ex);
+                // SIIN ON TEGELIKULT VAJA ERRORI AKENT NING TAGASI NUPPU / UUESTI PROOVIMIST !!
+                // lisan selle peagi
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+                // SIIN OLEKS VAJA, ET PROGRAMM LÕPETAKS TÖÖ, KUI EI LEIA FAILI, KUHU SALVESTADA
+            }
         });
 
         stseen.setScene(new Scene(juur, 800, 600));

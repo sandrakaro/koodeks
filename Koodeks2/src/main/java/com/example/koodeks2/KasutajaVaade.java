@@ -84,7 +84,7 @@ public class KasutajaVaade {
             }
 
             if (kasutaja != null) {
-                new KoodVaade(stseen, kasutajaNimi.getText(), kasutaja.getViimaneTeisendus()).show();
+                new KoodVaade(stseen, kasutajaNimi.getText(), kasutaja.getViimaneTeisendus(),kasutaja).show();
             } else {
                 error.setText("VALE KASUTAJANIMI VÕI PAROOL");
             }
