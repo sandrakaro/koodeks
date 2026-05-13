@@ -98,7 +98,6 @@ public class RegVaade {
         stseen.setScene(new Scene(scrollPane, 800, 600));
 
         stseen.setTitle("Registrerimine");
-        //stseen.setMaximized(true);
         stseen.show();
 
     }

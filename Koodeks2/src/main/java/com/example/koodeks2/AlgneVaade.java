@@ -59,7 +59,6 @@ public class AlgneVaade {
         stseen.setScene(new Scene(scrollPane, 800, 600));
 
         stseen.setTitle("KOODEKS");
-        //stseen.setMaximized(true);
         stseen.show();
 
     }

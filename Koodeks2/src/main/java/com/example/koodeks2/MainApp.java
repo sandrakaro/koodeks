@@ -11,9 +11,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stseen) {
-        stseen.setWidth(535);
-        stseen.setHeight(535);
-        stseen.setResizable(true);
+        stseen.setMinWidth(800);
+        stseen.setMinHeight(600);
 
         new AlgneVaade(stseen).show();
     }

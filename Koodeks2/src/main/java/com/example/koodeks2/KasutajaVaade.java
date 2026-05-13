@@ -98,7 +98,6 @@ public class KasutajaVaade {
         stseen.setScene(new Scene(scrollPane, 800, 600));
 
         stseen.setTitle("Sisseloogimine");
-        //stseen.setMaximized(true);
         stseen.show();
 
     }
