@@ -95,7 +95,8 @@ public class KasutajaVaade {
         ScrollPane scrollPane = new ScrollPane(juur);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
-        stseen.setScene(new Scene(scrollPane));
+
+        stseen.getScene().setRoot(scrollPane);
 
         stseen.setTitle("Sisseloogimine");
         stseen.show();

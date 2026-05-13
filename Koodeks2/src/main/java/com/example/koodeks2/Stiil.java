@@ -32,11 +32,13 @@ public class Stiil {
     public static void kirjelduseStiil(Label kirjeldus) {
         kirjeldus.setStyle("-fx-text-fill: #66628f");
         kirjeldus.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 18));
+        kirjeldus.setWrapText(true);
     }
 
     public static void koodStiil(Label tekst) {
         tekst.setStyle("-fx-text-fill: #66628f");
         tekst.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 24));
+        tekst.setWrapText(true);
     }
 
     public static void nuppudeStiil(Button nupp) {

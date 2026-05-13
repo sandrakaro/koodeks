@@ -153,7 +153,8 @@ public class KoodVaade {
         ScrollPane scrollPane = new ScrollPane(juur);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
-        stseen.setScene(new Scene(scrollPane));
+
+        stseen.getScene().setRoot(scrollPane);
 
         stseen.setTitle("Kood");
         stseen.show();
