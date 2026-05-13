@@ -2,10 +2,7 @@ package com.example.koodeks2;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -95,9 +92,13 @@ public class RegVaade {
             new AlgneVaade(stseen).show();
         });
 
-        stseen.setScene(new Scene(juur, 800, 600));
+        ScrollPane scrollPane = new ScrollPane(juur);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        stseen.setScene(new Scene(scrollPane, 800, 600));
+
         stseen.setTitle("Registrerimine");
-        stseen.setMaximized(true);
+        //stseen.setMaximized(true);
         stseen.show();
 
     }

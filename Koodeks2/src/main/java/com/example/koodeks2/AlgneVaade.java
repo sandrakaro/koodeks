@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -52,11 +53,13 @@ public class AlgneVaade {
             new RegVaade(stseen).show();
         });
 
-        Scene stseen1 = new Scene(juur, 800, 600);
+        ScrollPane scrollPane = new ScrollPane(juur);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        stseen.setScene(new Scene(scrollPane, 800, 600));
 
-        stseen.setScene(stseen1);
         stseen.setTitle("KOODEKS");
-        stseen.setMaximized(true);
+        //stseen.setMaximized(true);
         stseen.show();
 
     }

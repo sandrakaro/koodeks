@@ -1,7 +1,13 @@
 package com.example.koodeks2;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Kasutaja {
@@ -49,21 +55,6 @@ public class Kasutaja {
         }
     }
 
-    /**
-     * Kontrollib kasutajanime ja parooli vastavust
-     * @param sisestatudNimi Kasutaja sisestatu nimi
-     * @param sisestatudParool Kasutaja sisestatud parool
-     * @return True, kui andmed on õiged.
-     */
-    public boolean sisseloogimine(String sisestatudNimi, String sisestatudParool) {
-        if(kasutajaNimi.equals(sisestatudNimi) && looRasi(sisestatudParool).equals(parooliRasi)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     public String getViimaneTeisendus() {
         return viimaneTeisendus;
     }
@@ -74,14 +65,38 @@ public class Kasutaja {
     }
 
     /**
-     * Salvestame kasutaja andmed faili, lisades uue rea faili lõppu.
+     * Salvestame kasutaja andmed faili. Failikirjutatakse üle.
      * Andmed salvestatakse formaadis nimi:parooliräsi:viimaneTeisendus
      */
     public void salvestaFaili() throws IOException {
-        try (PrintWriter pw = new PrintWriter(new FileWriter("kasutajad.txt", true))) {
-            pw.println(kasutajaNimi + ":" + parooliRasi + ":" + viimaneTeisendus);
+        Path path = Paths.get("kasutajad.txt");
+        List<String> failiRead = new ArrayList<>();
+
+        if (Files.exists(path)) {
+            failiRead = Files.readAllLines(path);
         }
+
+        boolean kasutajaOlemas = false;
+        String uuedAndmed = kasutajaNimi + ":" + parooliRasi + ":" + viimaneTeisendus;
+
+        for (int i = 0; i < failiRead.size(); i++) {
+            String rida = failiRead.get(i);
+            String[] osad = rida.split(":", 2);
+
+            if (osad[0].equals(this.kasutajaNimi)) {
+                failiRead.set(i, uuedAndmed);
+                kasutajaOlemas = true;
+                break;
+            }
+        }
+
+        if (!kasutajaOlemas) {
+            failiRead.add(uuedAndmed);
+        }
+
+        Files.write(path, failiRead);
     }
+
 
     /**
      * Loeme failist kasutajate andmed ja otsime vastet nimele ja paroolile.

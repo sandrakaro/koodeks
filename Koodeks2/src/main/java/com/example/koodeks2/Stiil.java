@@ -10,21 +10,32 @@ import javafx.scene.text.FontWeight;
 public class Stiil {
 
     public static void lisaTaust(Pane paneel){
-        paneel.setStyle("-fx-background-color: linear-gradient(to bottom, #e2cfe7, #d6e4f0)");
+        //paneel.setStyle("-fx-background-color: linear-gradient(to bottom, #e2cfe7, #d6e4f0)");
+        var taustPilt = Stiil.class.getResource("/taust2.png");
+        paneel.setStyle(
+                "-fx-background-image: url('" + taustPilt + "');" +
+                "-fx-background-repeat: no-repeat;" +
+                "-fx-background-size: cover;" +
+                "-fx-background-position: center, center"
+        );
     }
 
     public static void pealkirjaStiil(Label pealkiri) {
-        pealkiri.setStyle("-fx-text-fill: #776f8f");
+        pealkiri.setStyle("-fx-text-fill: #66628f");
         pealkiri.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 150));
+
+        pealkiri.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
     }
 
+    // #776f8f
+    // #66628f
     public static void kirjelduseStiil(Label kirjeldus) {
-        kirjeldus.setStyle("-fx-text-fill: #776f8f");
+        kirjeldus.setStyle("-fx-text-fill: #66628f");
         kirjeldus.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 18));
     }
 
     public static void koodStiil(Label tekst) {
-        tekst.setStyle("-fx-text-fill: #776f8f");
+        tekst.setStyle("-fx-text-fill: #66628f");
         tekst.setFont(Font.font("Segoe UI", FontWeight.EXTRA_BOLD, 24));
     }
 

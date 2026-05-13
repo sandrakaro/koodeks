@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -149,7 +150,11 @@ public class KoodVaade {
             }
         });
 
-        stseen.setScene(new Scene(juur, 800, 600));
+        ScrollPane scrollPane = new ScrollPane(juur);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        stseen.setScene(new Scene(scrollPane, 800, 600));
+
         stseen.setTitle("Kood");
         stseen.show();
     }
