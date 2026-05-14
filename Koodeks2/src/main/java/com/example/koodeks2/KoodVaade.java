@@ -8,17 +8,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class KoodVaade {
-    // siin oleks vaja refactor'ida, et kasutajanimi ja viimaneteisendus tuleksid otse kasutajast,
-    // praegu on allpool mingid keerulisemad sõltuvused, mida vaja lahendada
     private Stage stseen;
-    private String kasutajaNimi;
-    private String viimaneTeisendus;
     private Kasutaja kasutaja;
 
-    public KoodVaade(Stage stseen, String kasutajaNimi, String viimaneTeisendus, Kasutaja kasutaja) {
+    public KoodVaade(Stage stseen, Kasutaja kasutaja) {
         this.stseen = stseen;
-        this.kasutajaNimi = kasutajaNimi;
-        this.viimaneTeisendus = viimaneTeisendus;
         this.kasutaja = kasutaja;
     }
 
