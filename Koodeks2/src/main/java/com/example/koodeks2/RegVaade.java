@@ -45,22 +45,29 @@ public class RegVaade {
         Stiil.nuppudeStiil(reg);
         Stiil.nupuTagasiStiil(tagasi);
 
+        // -----
+
         BorderPane juur = new BorderPane();
 
+        // peakiri ja kirleldus yleval
         VBox topBox = new VBox(10, pealkiri, kirjeldus);
         topBox.setAlignment(Pos.CENTER);
         topBox.setStyle("-fx-padding: 50;");
 
+        // tagasinupu paigutus
         VBox lefttopBox = new VBox(tagasi);
         lefttopBox.setAlignment(Pos.TOP_LEFT);
         lefttopBox.setStyle("-fx-padding: 10");
 
+        // tagasinupp, pealkiri, kirjeldus koos yleval
         StackPane topStack = new StackPane();
         topStack.getChildren().addAll(topBox, lefttopBox);
 
+        // kasutajanime ja parooli valjad, nupp registreerimiseks koos yhes reas
         HBox centerBox = new HBox(100, kasutajaNimi, parool, reg);
         centerBox.setAlignment(Pos.CENTER);
 
+        // centerBox ja yleval tekst "sisesta uus..."
         VBox mainCenter = new VBox(20, tekst, centerBox);
         mainCenter.setAlignment(Pos.CENTER);
 

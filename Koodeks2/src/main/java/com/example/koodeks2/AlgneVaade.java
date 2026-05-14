@@ -30,12 +30,16 @@ public class AlgneVaade {
         Stiil.nuppudeStiil(sisseloogimine);
         Stiil.nuppudeStiil(registreeru);
 
+        // -----
+
         BorderPane juur = new BorderPane();
 
+        // pealiri ja kirjeldus koos
         VBox topBox = new VBox(10, pealkiri, kirjeldus);
         topBox.setAlignment(Pos.CENTER);
         topBox.setStyle("-fx-padding: 50;");
 
+        // nupud sisseloogimiseks ja registreerimiseks yhes reas
         HBox centerBox = new HBox(100, sisseloogimine, registreeru);
         centerBox.setAlignment(Pos.CENTER);
 

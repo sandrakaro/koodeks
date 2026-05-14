@@ -46,22 +46,29 @@ public class KasutajaVaade {
         Stiil.nuppudeStiil(sisse);
         Stiil.nupuTagasiStiil(tagasi);
 
+        // -------
+
         BorderPane juur = new BorderPane();
 
+        // pealkirja kirjelduse paigutus
         VBox topBox = new VBox(10, pealkiri, kirjeldus);
         topBox.setAlignment(Pos.CENTER);
         topBox.setStyle("-fx-padding: 50;");
 
+        // tagasinupu paigutus
         VBox lefttopBox = new VBox(tagasi);
         lefttopBox.setAlignment(Pos.TOP_LEFT);
         lefttopBox.setStyle("-fx-padding: 10");
 
+        // pealkiri, kirjeldus ja tagasinupp koos yleval
         StackPane topStack = new StackPane();
         topStack.getChildren().addAll(topBox, lefttopBox);
 
+        // kasutajanime ja parooli valjad ning nupp sisseloogimiseks yhes reas
         HBox centerBox = new HBox(100, kasutajaNimi, parool, sisse);
         centerBox.setAlignment(Pos.CENTER);
 
+        // centerBox ja viga "vale kasutajanimi..." koos (viga yleval)
         VBox mainCenter = new VBox(10, error, centerBox);
         mainCenter.setAlignment(Pos.CENTER);
 
