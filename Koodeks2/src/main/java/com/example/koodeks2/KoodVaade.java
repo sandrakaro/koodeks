@@ -134,10 +134,9 @@ public class KoodVaade {
                 kasutaja.lisaTeisendus(viimane);
                 kasutaja.salvestaFaili();
 
-                // võiks veel olla viimatise tulemuse näitamine reaalajas,
-                // varsti uurin seda
-                /*tere = new Label("TERE TULEMAST,  " + kasutaja.getKasutajaNimi() + " !\n" +
-                        "VIIMANE TEISENDUS:  " + kasutaja.getViimaneTeisendus());*/
+                // viimatise tehte tulemuse näitamine reaalajas,
+                tere.setText("TERE TULEMAST,  " + kasutaja.getKasutajaNimi() + " !\n" +
+                        "VIIMANE TEISENDUS:  " + kasutaja.getViimaneTeisendus());
 
             } catch (EbasobivaKodeeringuErind ex) {
                 throw new RuntimeException(ex);

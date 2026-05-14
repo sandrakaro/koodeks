@@ -228,6 +228,8 @@ public class Kood {
             }
         }
 
+        else throw new EbasobivaKodeeringuErind();
+
         if (saadudTäisosa.isEmpty() && saadudMurdosa.isEmpty()) return "0.0";
         return saadudTäisosa.reverse().toString() + "." + saadudMurdosa;
     }
