@@ -1,10 +1,7 @@
 package com.example.koodeks2;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -90,7 +87,8 @@ public class KoodVaade {
         HBox infoRida = new HBox();
         infoRida.setAlignment(Pos.CENTER);
         javafx.scene.layout.Region spacer = new javafx.scene.layout.Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS); // et tutvustus ja instruktsioon oleksid yksteisest voimalikult kaugel boxi raames
+        HBox.setHgrow(spacer, Priority.ALWAYS); // et tutvustus ja instruktsioon oleksid yksteisest voimalikult
+        // kaugel boxi raames
         infoRida.getChildren().addAll(tutvustusBox, spacer, instr);
 
         // sisestusväljade paigutus
@@ -130,7 +128,8 @@ public class KoodVaade {
                 tulemus.setText(teisendatudArv);
 
                 // viimatise teisenduse salvestamine
-                String viimane = sisestatudArv.getKood() + " (algne kodeering: " + sisestatudArv.getTüüp() + ") -> " + teisendatudArv;
+                String viimane = sisestatudArv.getKood() + " (algne kodeering: " + sisestatudArv.getTüüp() +
+                        ") -> " + teisendatudArv;
                 kasutaja.lisaTeisendus(viimane);
                 kasutaja.salvestaFaili();
 
@@ -139,12 +138,14 @@ public class KoodVaade {
                         "VIIMANE TEISENDUS:  " + kasutaja.getViimaneTeisendus());
 
             } catch (EbasobivaKodeeringuErind ex) {
-                throw new RuntimeException(ex);
-                // SIIN ON TEGELIKULT VAJA ERRORI AKENT NING TAGASI NUPPU / UUESTI PROOVIMIST !!
-                // lisan selle peagi
+                Alert ebasobivaKodeeringuHoiatus = new Alert(Alert.AlertType.ERROR,
+                        "Sisestasid ebasobiva kodeeringu, palun proovi uuesti.");
+                ebasobivaKodeeringuHoiatus.show();
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
-                // SIIN OLEKS VAJA, ET PROGRAMM LÕPETAKS TÖÖ, KUI EI LEIA FAILI, KUHU SALVESTADA
+                // kui tekkis probleem faili kasutamisel, siis programm väljastab käsureal
+                // errori põhjuse ja lõpetab töö
+                System.out.println(ex.getMessage());
+                System.exit(1);
             }
         });
 
