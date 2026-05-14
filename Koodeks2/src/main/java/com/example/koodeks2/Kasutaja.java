@@ -130,4 +130,24 @@ public class Kasutaja {
         }
         return leitudKasutaja;
     }
+
+    /**
+     * Kontrollib, kas sisestatud kasutaja nimi registreerimisel on juba olemas.
+     * @param nimi sisestatud kasutaja nimi.
+     * @return true, kui sisestatud kasutajanimi on juba registreeritud. false, kui mitte.
+     */
+    public static boolean kasutajaOnOlemas(String nimi) throws IOException {
+        Path path = Paths.get("kasutajad.txt");
+
+        List<String> read = Files.readAllLines(path);
+        for (String rida : read) {
+            String[] osad = rida.split(":");
+
+            if (osad.length > 0 && osad[0].equals(nimi)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.koodeks2;
 
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -73,7 +72,17 @@ public class KasutajaVaade {
 
         // sisseloogimine
         sisse.setOnAction(e -> {
+            String nimi = kasutajaNimi.getText().trim();
+            String p = parool.getText();
+
+            if (nimi.isEmpty() || p.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Täida kõik väljad!");
+                alert.showAndWait();
+                return;
+            }
+
             Kasutaja kasutaja = null;
+
             try {
                 kasutaja = Kasutaja.loeFailist(kasutajaNimi.getText(), parool.getText());
             } catch (IOException ex) {

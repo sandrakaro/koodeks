@@ -35,9 +35,13 @@ public class Main {
             String parool = sc.nextLine();
 
             if (valik.equals("2")) {
-                Kasutaja uus = new Kasutaja(nimi, parool);
-                uus.salvestaFaili();
-                System.out.println("Kasutaja loodud.");
+                if (Kasutaja.kasutajaOnOlemas(nimi)) {
+                    System.out.println("Kasutaja nimega: " + nimi + "on juba olemas.");
+                } else {
+                    Kasutaja uus = new Kasutaja(nimi, parool);
+                    uus.salvestaFaili();
+                    System.out.println("Kasutaja loodud.");
+                }
             } else {
                 sisseLoogitud = Kasutaja.loeFailist(nimi, parool);
                 if (sisseLoogitud == null) {

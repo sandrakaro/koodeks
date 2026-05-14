@@ -1,7 +1,6 @@
 package com.example.koodeks2;
 
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -28,8 +27,6 @@ public class RegVaade {
         Stiil.kirjelduseStiil(kirjeldus);
 
         Label tekst = new Label("SISESTA UUS KASUTAJANIMI JA PAROOL");
-        //tekst.setFont(Font.font("Verdana", FontWeight.NORMAL, 20));
-        //tekst.setTextFill(Color.web("#776f8f"));
         Stiil.kirjelduseStiil(tekst);
 
         TextField kasutajaNimi = new TextField();
@@ -74,16 +71,28 @@ public class RegVaade {
 
         // registreerimine
         reg.setOnAction(e -> {
-            Kasutaja uus = null;
-            uus = new Kasutaja(kasutajaNimi.getText(), parool.getText());
-            try {
-                uus.salvestaFaili();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+            String nimi = kasutajaNimi.getText().trim();
+            String p = parool.getText();
+
+            if (nimi.isEmpty() || p.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Täida kõik väljad!");
+                alert.showAndWait();
+                return;
             }
 
-            if (uus != null) {
-                new KasutajaVaade(stseen).show();
+            try {
+                if (Kasutaja.kasutajaOnOlemas(nimi)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "See kasutajanimi on juba võetud!");
+                    alert.showAndWait();
+                } else {
+                    Kasutaja uus = new Kasutaja(nimi, p);
+                    uus.salvestaFaili();
+                    System.out.println("Kasutaja loodud.");
+
+                    new KasutajaVaade(stseen).show();
+                }
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
